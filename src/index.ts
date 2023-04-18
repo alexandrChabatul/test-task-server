@@ -1,8 +1,32 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import cors from 'cors';
+import * as dotenv from 'dotenv';
+import morgan from 'morgan';
+import db from './sequelize/models';
+
+dotenv.config();
+
+const PORT = process.env.PORT || 3000;
 
 const app = express();
-const port = 5000;
-app.get('/', (request: Request, response: Response) => {
-  response.send('Hello world!');
-});
-app.listen(port, () => console.log(`Running on port ${port}`));
+
+app.use(express.json());
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.CLIENT,
+  })
+);
+app.use(morgan('combined'));
+
+async function start() {
+  try {
+    db.sequelize.sync().then(() => {
+      app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+    });
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+start();
