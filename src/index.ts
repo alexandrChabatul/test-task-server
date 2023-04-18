@@ -2,7 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
 import morgan from 'morgan';
+import errorMiddleware from './middleware/error-middleware';
 import db from './sequelize/models';
+import authRouter from './routers/AuthRouter';
+import usersRouter from './routers/UsersRouter';
 
 dotenv.config();
 
@@ -18,6 +21,9 @@ app.use(
   })
 );
 app.use(morgan('combined'));
+app.use('/api/auth', authRouter);
+app.use('/api/users', usersRouter);
+app.use(errorMiddleware);
 
 async function start() {
   try {
