@@ -1,6 +1,6 @@
 import * as express from 'express';
-import { check, cookie } from 'express-validator';
-import AuthController from '../controllers/authController';
+import { check } from 'express-validator';
+import AuthController from 'src/controllers/AuthController';
 
 const authRouter = express.Router();
 const controller = new AuthController();
@@ -34,7 +34,7 @@ authRouter.post(
       .withMessage('Last name should not be empty'),
     check('image').isString(),
   ],
-  controller.signUp
+  controller.signup
 );
 authRouter.post(
   '/login',
@@ -53,7 +53,7 @@ authRouter.post(
       .isString()
       .withMessage('Password should be string')
   ],
-  controller.signIn
+  controller.login
 );
 
 export default authRouter;
