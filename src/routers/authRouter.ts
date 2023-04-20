@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { check } from 'express-validator';
-import AuthController from 'src/controllers/AuthController';
+import AuthController from '../controllers/authController';
 
 const authRouter = express.Router();
 const controller = new AuthController();
@@ -24,20 +24,11 @@ authRouter.post(
       .bail()
       .isLength({ min: 6 })
       .withMessage('Password length must be at least 6 characters'),
-    check('firstName')
-      .trim()
-      .notEmpty()
-      .withMessage('First name should not be empty'),
-    check('lastName')
-      .trim()
-      .notEmpty()
-      .withMessage('Last name should not be empty'),
-    check('image').isString(),
   ],
   controller.signup
 );
 authRouter.post(
-  '/login',
+  '/signin',
   [
     check('email')
       .trim()
@@ -51,7 +42,7 @@ authRouter.post(
       .withMessage('Password should not be empty')
       .bail()
       .isString()
-      .withMessage('Password should be string')
+      .withMessage('Password should be string'),
   ],
   controller.login
 );

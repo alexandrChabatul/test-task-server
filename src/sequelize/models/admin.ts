@@ -1,39 +1,27 @@
 import { Model, Optional, DataTypes } from 'sequelize';
 import sequelizeConnection from '../config/config';
 
-type UserAttributes = {
+type AdminAttributes = {
   id: number;
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
-  image: string;
-  pdf: Buffer;
 };
 
-type UserCreationAttributes = Optional<UserAttributes, 'id'>;
+type AdminCreationAttributes = Optional<AdminAttributes, 'id'>;
 
-class User extends Model<UserAttributes, UserCreationAttributes> {
+class Admin extends Model<AdminAttributes, AdminCreationAttributes> {
   id: number;
 
   email: string;
 
   password: string;
-
-  firstName: string;
-
-  lastName: string;
-
-  image: string;
-
-  pdf: Buffer;
 
   /* eslint-disable @typescript-eslint/no-unused-vars */
   static associate(models) {
     // define association here
   }
 }
-User.init(
+Admin.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -49,27 +37,11 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    pdf: {
-      type: DataTypes.BLOB('long'),
-      allowNull: true,
-    },
   },
   {
     sequelize: sequelizeConnection,
-    modelName: 'User',
+    modelName: 'Admin',
   }
 );
 
-export default User;
+export default Admin;

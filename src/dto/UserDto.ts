@@ -1,13 +1,15 @@
-import User from 'src/sequelize/models/user';
+import User from '../sequelize/models/user';
 
 export default class UserDto {
-  id;
+  id: number;
 
-  email;
+  email: string;
 
-  firstName;
+  firstName: string;
 
-  lastName;
+  lastName: string;
+
+  image: string | undefined;
 
   /* eslint no-underscore-dangle: 0 */
   constructor(user: User) {
@@ -15,5 +17,6 @@ export default class UserDto {
     this.email = user.email;
     this.firstName = user.firstName;
     this.lastName = user.lastName;
+    this.image = user.image;
   }
 }

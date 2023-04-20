@@ -1,6 +1,6 @@
-import UserDto from "src/dto/UserDto";
+import AdminDto from '../../dto/AdminDto';
 
 export type AuthResponse = {
   accessToken: string;
-  user: UserDto;
+  admin: AdminDto;
 };

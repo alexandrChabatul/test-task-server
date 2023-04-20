@@ -3,9 +3,10 @@ import cors from 'cors';
 import * as dotenv from 'dotenv';
 import morgan from 'morgan';
 import errorMiddleware from './middleware/error-middleware';
-import db from './sequelize/models';
-import authRouter from './routers/AuthRouter';
-import usersRouter from './routers/UsersRouter';
+// import db from './sequelize/models';
+import authRouter from './routers/authRouter';
+import usersRouter from './routers/userRouter';
+import sequelizeConnection from './sequelize/config/config';
 
 dotenv.config();
 
@@ -27,7 +28,7 @@ app.use(errorMiddleware);
 
 async function start() {
   try {
-    db.sequelize.sync().then(() => {
+    sequelizeConnection.sync().then(() => {
       app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
     });
   } catch (e) {

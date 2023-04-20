@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken';
-import UserDto from '../dto/UserDto';
+import AdminDto from '../dto/AdminDto';
 
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 class TokenService {
-  generateToken(payload: UserDto) {
+  generateToken(payload: AdminDto) {
     const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET!, {
       expiresIn: '24h',
     });
@@ -17,7 +18,6 @@ class TokenService {
       return null;
     }
   }
-
 }
 
 export default new TokenService();

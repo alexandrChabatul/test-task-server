@@ -6,7 +6,7 @@ export default function errorMiddleware(
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) {
   console.log(err);
   if (err instanceof ApiError) {
@@ -20,5 +20,7 @@ export default function errorMiddleware(
       message: err.message,
     });
   }
-  return res.status(500).json({ message: 'Unexpected error', errors: err.message });
+  return res
+    .status(500)
+    .json({ message: 'Unexpected error', errors: err.message });
 }

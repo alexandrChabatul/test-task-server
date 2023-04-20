@@ -1,14 +1,15 @@
 import { NextFunction, Request, Response } from 'express';
+import { RequestWithAdmin } from '../payload/request/requestWithUser';
 import UserDto from '../dto/UserDto';
 import ApiError from '../errors/ApiError';
-import TokenService from '../services/TokenService';
-
-export interface RequestWithUser extends Request {
-  user: UserDto;
-}
+import TokenService from '../services/tokenService';
 
 /* eslint-disable  consistent-return */
-export default function authMiddleware(req: Request, res: Response, next: NextFunction) {
+export default function authMiddleware(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
@@ -22,7 +23,7 @@ export default function authMiddleware(req: Request, res: Response, next: NextFu
     if (!data) {
       return next(ApiError.UnauthorizedError());
     }
-    (req as RequestWithUser).user = data;
+    (req as RequestWithAdmin).admin = data;
     next();
   } catch (e) {
     return next(ApiError.UnauthorizedError());

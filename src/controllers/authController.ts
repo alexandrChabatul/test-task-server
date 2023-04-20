@@ -1,7 +1,7 @@
 import { validationResult } from 'express-validator';
 import { NextFunction, Request, Response } from 'express';
+import authService from '../services/authService';
 import ValidationService from '../services/ValidationService';
-import authService from 'src/services/authService';
 
 /* eslint consistent-return: 0 */
 export default class AuthController {
@@ -9,8 +9,8 @@ export default class AuthController {
     try {
       const errors = validationResult(req);
       ValidationService.handleValidationResult(errors);
-      const { email, password, firstName, lastName, image } = req.body;
-      const data = await authService.signup(email, password, firstName, lastName, image);
+      const { email, password } = req.body;
+      const data = await authService.signup(email, password);
       return res.status(201).json(data);
     } catch (e) {
       next(e);
@@ -28,5 +28,4 @@ export default class AuthController {
       next(e);
     }
   }
-  
 }

@@ -5,7 +5,11 @@ export default class ApiError extends Error {
 
   errors: ValidationError[] | unknown[];
 
-  constructor(status: number, message: string, errors: ValidationError[] | unknown[] = []) {
+  constructor(
+    status: number,
+    message: string,
+    errors: ValidationError[] | unknown[] = []
+  ) {
     super(message);
     this.status = status;
     this.errors = errors;
@@ -15,7 +19,10 @@ export default class ApiError extends Error {
     return new ApiError(401, 'Unauthorized');
   }
 
-  static BadRequest(message: string, errors: ValidationError[] | unknown[] = []) {
+  static BadRequest(
+    message: string,
+    errors: ValidationError[] | unknown[] = []
+  ) {
     return new ApiError(400, message, errors);
   }
 
