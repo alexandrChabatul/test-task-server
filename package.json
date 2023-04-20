@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "nodemon ./src/index.ts",
+    "start-server": "node dist/index.js",
     "test": "test",
     "lint": "eslint . --ext .ts"
   },
@@ -26,7 +27,6 @@
   "homepage": "https://github.com/sashkill94/test-task-server#readme",
   "devDependencies": {
     "@types/express": "^4.17.17",
-    "@types/multer": "^1.4.7",
     "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
@@ -43,6 +43,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@types/multer": "^1.4.7",
     "@types/pdfkit": "^0.12.9",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
