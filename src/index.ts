@@ -7,6 +7,7 @@ import errorMiddleware from './middleware/error-middleware';
 import authRouter from './routers/authRouter';
 import usersRouter from './routers/userRouter';
 import sequelizeConnection from './sequelize/config/config';
+import imageRouter from './routers/imageRouter';
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use(
 app.use(morgan('combined'));
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/images', imageRouter);
 app.use(errorMiddleware);
 
 async function start() {

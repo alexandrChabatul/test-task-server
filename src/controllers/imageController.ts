@@ -4,13 +4,14 @@ import { MulterRequest } from '../payload/request/multerRequest';
 import imageService from '../services/imageService';
 
 export class ImageController {
-  saveImage(req: Request, res: Response, next: NextFunction) {
+  async saveImage(req: Request, res: Response, next: NextFunction) {
     try {
       const { file } = req as MulterRequest;
       if (!file) {
-        return ApiError.BadRequest('Image is required.');
+        throw ApiError.BadRequest('Image is required.');
       }
-      imageService.saveImage(file);
+      const imageUrl = await imageService.saveImage(file);
+      return res.json({ imageUrl });
     } catch (e) {
       next(e);
     }

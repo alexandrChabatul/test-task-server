@@ -8,7 +8,7 @@ import AdminDto from '../dto/AdminDto';
 class AuthService {
   async signup(email: string, password: string) {
     const hashPassword = bcrypt.hashSync(password, 7);
-    const [user, created] = await Admin.findOrCreate({
+    const [admin, created] = await Admin.findOrCreate({
       where: { email },
       defaults: {
         email,
@@ -18,7 +18,7 @@ class AuthService {
     if (!created) {
       throw ApiError.BadRequest('User with this email already exists.');
     }
-    return user;
+    return new AdminDto(admin);
   }
 
   async login(email: string, password: string) {

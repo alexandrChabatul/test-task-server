@@ -1,10 +1,13 @@
 import * as express from 'express';
 import { ImageController } from '../controllers/imageController';
 import authMiddleware from '../middleware/auth-middleware';
+import multer from 'multer';
 
-const usersRouter = express.Router();
+const imageRouter = express.Router();
 const controller = new ImageController();
+const storage = multer.memoryStorage();
+const upload = multer({ storage }).single('file');
 
-usersRouter.post('/', authMiddleware, controller.saveImage);
+imageRouter.post('/', [authMiddleware, upload], controller.saveImage);
 
-export default usersRouter;
+export default imageRouter;

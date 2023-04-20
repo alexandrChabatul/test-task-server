@@ -64,8 +64,10 @@ export default class UsersController {
 
   async generatePdf(req: Request, res: Response, next: NextFunction) {
     try {
+      const errors = validationResult(req);
+      ValidationService.handleValidationResult(errors);
       const { email } = req.body;
-      const result = userService.generatePdf(email);
+      const result = await userService.generatePdf(email);
       return res.json({ result });
     } catch (e) {
       return next(e);

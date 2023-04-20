@@ -4,7 +4,6 @@ import sequelizeConnection from '../config/config';
 type UserAttributes = {
   id: number;
   email: string;
-  password: string;
   firstName: string;
   lastName: string;
   image: string;
@@ -17,8 +16,6 @@ class User extends Model<UserAttributes, UserCreationAttributes> {
   id: number;
 
   email: string;
-
-  password: string;
 
   firstName: string;
 
@@ -44,10 +41,6 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     firstName: {
       type: DataTypes.STRING,
