@@ -38,7 +38,32 @@ usersRouter.get(
   authMiddleware,
   controller.getUserById.bind(controller)
 );
-usersRouter.put('/:id', authMiddleware, controller.updateUser.bind(controller));
+usersRouter.put(
+  '/:id',
+  [
+    check('email')
+      .trim()
+      .notEmpty()
+      .withMessage('Email should not be empty')
+      .bail()
+      .isEmail()
+      .withMessage('Email must match the pattern'),
+    check('firstName')
+      .trim()
+      .notEmpty()
+      .withMessage('First name should not be empty'),
+    check('lastName')
+      .trim()
+      .notEmpty()
+      .withMessage('Last name should not be empty'),
+    check('image')
+      .optional({ checkFalsy: true })
+      .isURL()
+      .withMessage('Image should be URL'),
+    authMiddleware,
+  ],
+  controller.updateUser.bind(controller)
+);
 usersRouter.delete(
   '/:id',
   authMiddleware,

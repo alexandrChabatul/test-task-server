@@ -62,12 +62,18 @@ class UserService {
   }
 
   async deleteUser(id: number) {
-    await User.destroy({ where: { id } });
+    const result = await User.destroy({ where: { id } });
+    if (result === 0) {
+      throw ApiError.NotFound(`Cannot find user with id - ${id}`);
+    }
   }
 
   async generatePdf(email: string) {
     try {
       const user = await User.findOne({ where: { email } });
+      if (!user) {
+        throw ApiError.NotFound(`Cannot find user with email - ${email}`);
+      }
       const pdfBytes = await PdfService.generatePdf(user);
       const buffer = Buffer.from(pdfBytes);
       await User.update(
