@@ -29,34 +29,34 @@ Server for administrator. Authorization is required, the administrator can manag
 ###### Now you can send requests to the address (port can be set via environment variables): `http://127.0.0.1:8080`. To correct work you need to setting up your `.env` file in the root of the project. You need to configure next environment variables:
 ##
 
-// Database
-DB_USER
-DB_PASSWORD
-DB_NAME
-DB_HOST
-DB_DRIVER
+// Database</br>
+DB_USER</br>
+DB_PASSWORD</br>
+DB_NAME</br>
+DB_HOST</br>
+DB_DRIVER</br>
 
-// Server
-JWT_ACCESS_SECRET 
-CLIENT 
-NODE_DOCKER_POST=8080
+// Server</br>
+JWT_ACCESS_SECRET </br>
+CLIENT </br>
+NODE_DOCKER_POST=8080</br>
 
-// Firebase (storage)
-API_KEY
-AUTH_DOMAIN
-DATABASE_URL
-PROJECT_ID
-STORAGE_BUCKET
-MESSAGING_SENDER_ID
-APP_ID
+// Firebase (storage)</br>
+API_KEY</br>
+AUTH_DOMAIN</br>
+DATABASE_URL</br>
+PROJECT_ID</br>
+STORAGE_BUCKET</br>
+MESSAGING_SENDER_ID</br>
+APP_ID</br>
 
-// Docker
-MYSQLDB_USER
-MYSQLDB_ROOT_PASSWORD
-MYSQLDB_DATABASE
-MYSQLDB_LOCAL_PORT
-MYSQLDB_DOCKER_PORT
-NODE_LOCAL_PORT
+// Docker</br>
+MYSQLDB_USER</br>
+MYSQLDB_ROOT_PASSWORD</br>
+MYSQLDB_DATABASE</br>
+MYSQLDB_LOCAL_PORT</br>
+MYSQLDB_DOCKER_PORT</br>
+NODE_LOCAL_PORT</br>
 
 ##  Usage
 
@@ -808,6 +808,8 @@ None
 None
 
 </details>
+
+----
 
 <a id="uplaod-image"></a>**Upload image**
 
