@@ -828,7 +828,7 @@ Upload image to firebase storage and return image url.
 
 * **Headers:**
 
-`'Content-Type': 'application/json'`
+`'Content-Type: multipart/form-data;'`
 
 * **URL Params**
 
